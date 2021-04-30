@@ -24,14 +24,15 @@
     {% endif %}
 </head>
 <body>
-    <form action="/home" method="post">
+
         <h1><font color="blue" > JOB PORTAL</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             &emsp;&emsp;&emsp;&emsp;
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-        <a href="{{url_for('home') }}">Sign up</a>&nbsp;
-        <a href="{{url_for('home') }}">Login</a></h1><hr><br><br><br><br>
+            &emsp;&emsp;
+        <a href="{{url_for('register') }}">Sign up</a>&nbsp;
+        <a href="{{url_for('login') }}">Login</a>
+        </h1><hr><br><br><br><br>
         <img align="right" height="900" width="1300" src="{{url_for('static', filename='Job-Hunting-Illustration.jpg')}}" />
         &emsp;&emsp;&emsp;&emsp;<font color="#3399ff" size="20"><i><b> Welcome to your</b></i></font><br>
         &emsp;&emsp;&emsp;&emsp;<font color="#3399ff" size="20"><i><b> professional</b></i></font><br>
@@ -39,16 +40,19 @@
         &emsp;&emsp;
 
         <br><br><br><br><br><br><br><br><br><br>
-
-        &emsp;&emsp;&emsp;&emsp;<font color="grey" size="15"> <i>Find open jobs</i></font>
-        &emsp;&emsp;&emsp;&emsp;<b><input class="button" type="submit" name="findjob" value="Find job"></b>
+        <form action="/find_job" method="post">
+            &emsp;&emsp;&emsp;&emsp;<font color="grey" size="15"> <i>Find open jobs</i></font>
+            &emsp;&emsp;&emsp;&emsp;<b><input class="button" type="submit"  value="Find job"></b>
+        </form>
         <br><br><br><br><br><br><br><br><br><br><br><br>
 
+        <form action="/post_job_signup" >
+            &emsp;&emsp;&emsp;&emsp;<font color=" #ba4a00 " size="20"><i>Post your job</i></font><br>
+            &emsp;&emsp;&emsp;&emsp;<font color=" #ba4a00 " size="20"><i>and find the  </i></font><br>
+            &emsp;&emsp;&emsp;&emsp;<font color=" #ba4a00 " size="20"><i>people you need</i></font>
+            &emsp;&emsp;
+            <b><input class="button" type="submit" value="Post a job"></b>
+        </form>
 
-        &emsp;&emsp;&emsp;&emsp;<font color=" #ba4a00 " size="20"><i>Post your job</i></font><br>
-        &emsp;&emsp;&emsp;&emsp;<font color=" #ba4a00 " size="20"><i>and find the  </i></font><br>
-        &emsp;&emsp;&emsp;&emsp;<font color=" #ba4a00 " size="20"><i>people you need</i></font>
-        &emsp;&emsp;<b><input class="button" type="submit" name="postjob" value="Post a job"></b>
-    </form>
 </body>
 </html>

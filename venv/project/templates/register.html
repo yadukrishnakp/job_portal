@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .button {
+      background-color: white;
+      border: 3px solid grey;
+      color: #363534;
+      padding: 80px 32px;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 0px;
+      top: 50%;
+      left: 50%;
+      transform: translate(120%, 20%);
+    }
+    .button1 {
+      color: #3399ff;
+      text-align: right;
+      font-size: 45px;
+    }
+
+</style>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>{{title}}</title>
+    {% else %}
+        <title>Job Portal</title>
+    {% endif %}
+</head>
+<body>
+<form action="/register" method="post" novalidate>
+    <h1><font color="blue" > JOB PORTAL</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;
+        <a href="{{url_for('home') }}">Home</a>&nbsp;
+        <a href="{{url_for('register') }}">Sign up</a>&nbsp;
+        <a href="{{url_for('login') }}">Login</a></h1><hr>
+
+    {{ form.hidden_tag() }}
+    <div class="button">
+        <font class="button1">Sign up</font><br><br>
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(size=50)}}<br>
+        {% for error in form.email.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.password.label }}<br>
+        {{ form.password(size=50)}}<br>
+        {% for error in form.password.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.confirm_password.label }}<br>
+        {{ form.confirm_password(size=50)}}<br>
+        {% for error in form.confirm_password.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.submit() }}
+    </p>
+    <p>
+        <small>if you have an Account <a href="{{url_for('login')}}">Login</a></small>
+    </p>
+    </div>
+</form>
+
+
+</body>
+</html>
