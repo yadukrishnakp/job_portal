@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+  <style>
+    .button {
+      background-color: white;
+      border: 3px solid grey;
+      color: #363534;
+      padding: 90px 150px;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 0px;
+      top: 50%;
+      left: 50%;
+      transform: translate(60%, 10%);
+    }
+    .button1 {
+      color: #3399ff;
+      text-align: right;
+      font-size: 45px;
+    }
+
+</style>
+<form action="/login_advertiser" method="post" novalidate>
+    {{ form.hidden_tag() }}
+        <div class="button">
+            <font size="25" color="#3399ff">Post a job vacancy</font><br><br>
+                <p>
+                    {{ form.job_title.label }}<br>
+                    {{ form.job_title(size=50)}}<br>
+                    {% for error in form.job_title.errors %}
+                    <small><span style="color:red;">{{error}}</span></small>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.job_description.label }}<br>
+                    {{ form.job_description(cols="80", rows="15")}}<br>
+                    {% for error in form.job_description.errors %}
+                    <small><span style="color:red;">{{error}}</span></small>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.experience.label }}<br>
+                    {{ form.experience(size=50)}}<br>
+                    {% for error in form.experience.errors %}
+                    <small><span style="color:red;">{{error}}</span></small>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.salary.label }}<br>
+                    {{ form.salary(size=50)}}<br>
+                    {% for error in form.salary.errors %}
+                    <small><span style="color:red;">{{error}}</span></small>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.benefits.label }}<br>
+                    {{ form.benefits(cols="80", rows="15")}}<br>
+                    {% for error in form.benefits.errors %}
+                    <small><span style="color:red;">{{error}}</span></small>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.apply_link.label }}<br>
+                    {{ form.apply_link(size=50)}}<br>
+                    {% for error in form.apply_link.errors %}
+                    <small><span style="color:red;">{{error}}</span></small>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.submit() }}
+                </p>
+        </div>
+
+    </form>
+{% endblock %}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .button {
+      background-color: white;
+      border: 3px solid grey;
+      color: #363534;
+      padding: 100px 200px;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 0px;
+      top: 50%;
+      left: 50%;
+      transform: translate(60%, 10%);
+    }
+    .button1 {
+      color: #3399ff;
+      text-align: right;
+      font-size: 45px;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/update_profile" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <h1><font color="blue" > JOB PORTAL</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <a href="{{url_for('job_seeker') }}">Search </a>&nbsp;
+        <a href="{{url_for('register') }}">applied jobs </a>&nbsp;
+        <a href="{{url_for('home') }}">Log out</a></h1><hr>
+    <div class="button">
+        <font class="button1">Update Profile</font><br><br>
+        <p>
+        {{ form.full_name.label }}<br>
+        {{ form.full_name(size=50)}}<br>
+        {% for error in form.full_name.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.current_address.label }}<br>
+        {{ form.current_address(cols="69", rows="10")}}<br>
+        {% for error in form.current_address.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.city.label }}<br>
+        {{ form.city(size=50)}}<br>
+        {% for error in form.city.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.district.label }}<br>
+        {{ form.district(size=50)}}<br>
+        {% for error in form.district.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.state.label }}<br>
+        {{ form.state(size=50)}}<br>
+        {% for error in form.state.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(size=50)}}<br>
+        {% for error in form.email.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.phone_number.label }}<br>
+        {{ form.phone_number(size=50)}}<br>
+        {% for error in form.phone_number.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.position.label }}<br>
+        {{ form.position(size=50)}}<br>
+        {% for error in form.position.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.university.label }}<br>
+        {{ form.university(size=50)}}<br>
+        {% for error in form.university.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p><p>
+        {{ form.qualification.label }}<br>
+        {{ form.qualification(size=50)}}<br>
+        {% for error in form.qualification.errors %}
+        <small><span style="color:red;">{{error}}</span></small>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.submit() }}
+    </p>
+    </div>
+
+</form>
+</body>
+</html>

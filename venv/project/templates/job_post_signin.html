@@ -44,6 +44,14 @@
     {{ form.hidden_tag() }}
     <div class="button">
         <font class="button1">Sign in Advertiser</font><br><br>
+         {% with messages = get_flashed_messages() %}
+         {% if messages %}
+         {% for message in messages %}
+         <font color="red">{{ message }}</font>
+         {% endfor %}
+         {% endif %}
+         {% endwith %}
+        <br>
         <p>
             {{ form.email.label }}<br>
             {{ form.email(size=50)}}<br>

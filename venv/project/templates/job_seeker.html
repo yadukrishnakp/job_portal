@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/job_seeker" method="post" novalidate>
+    {{ form.hidden_tag() }}
+<h1><font color="blue" > JOB PORTAL</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+
+         <font color="blue"> {{ form.search.label }}</font>
+         {{ form.search(size=50)}}
+        {{ form.submit() }}&emsp;&emsp;&emsp;&emsp;&emsp;
+        <a href="{{url_for('update_profile') }}">Profile </a>&nbsp;
+        <a href="{{url_for('register') }}">applied jobs </a>&nbsp;
+        <a href="{{url_for('home') }}">Log out</a></h1><hr>
+</form>
+
+</body>
+</html>
