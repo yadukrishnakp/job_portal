@@ -28,6 +28,13 @@
         <div class="button">
             <font size="25" color="#3399ff">Post a job vacancy</font><br><br>
                 <p>
+                    {{ form.company_name.label }}<br>
+                    {{ form.company_name(size=50)}}<br>
+                    {% for error in form.company_name.errors %}
+                    <small><span style="color:red;">{{error}}</span></small>
+                    {% endfor %}
+                </p>
+                <p>
                     {{ form.job_title.label }}<br>
                     {{ form.job_title(size=50)}}<br>
                     {% for error in form.job_title.errors %}
@@ -49,9 +56,9 @@
                     {% endfor %}
                 </p>
                 <p>
-                    {{ form.salary.label }}<br>
-                    {{ form.salary(size=50)}}<br>
-                    {% for error in form.salary.errors %}
+                    {{ form.salary_range.label }}<br>
+                    {{ form.salary_range(size=50)}}<br>
+                    {% for error in form.salary_range.errors %}
                     <small><span style="color:red;">{{error}}</span></small>
                     {% endfor %}
                 </p>

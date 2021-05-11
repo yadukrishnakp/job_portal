@@ -28,17 +28,18 @@ class PostRegistrationForm(FlaskForm):
 
 
 class PostJobVacancy(FlaskForm):
+    company_name = StringField('Company name', validators=[DataRequired()])
     job_title = StringField('Job title', validators=[DataRequired()])
     job_description = TextAreaField('Job description', validators=[DataRequired()])
     experience = StringField('Job experience', validators=[DataRequired()])
-    salary = IntegerField('Salary range', validators=[DataRequired()])
+    salary_range = IntegerField('Salary range', validators=[DataRequired()])
     benefits = TextAreaField('Benefits', validators=[DataRequired()])
     apply_link = StringField('Apply link', validators=[DataRequired()])
     submit = SubmitField('Post')
 
 
 class SearchJob(FlaskForm):
-    search = StringField('search', validators=[DataRequired()])
+    search = StringField('search',  validators=[DataRequired()],)
     submit = SubmitField('Search')
 
 
@@ -48,10 +49,26 @@ class UpdateProfile(FlaskForm):
     city = StringField('city', validators=[DataRequired()])
     district = StringField('District', validators=[DataRequired()])
     state = StringField('State', validators=[DataRequired()])
-    zipcode = IntegerField('Zipcode', validators=[DataRequired()])
+    pin_code = IntegerField('Pincode', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     phone_number = IntegerField('Phone Number', validators=[DataRequired()])
     position = StringField('Position you are applying for', validators=[DataRequired()])
     university = StringField('University', validators=[DataRequired()])
     qualification = StringField('Highest Qualification', validators=[DataRequired()])
-    submit = SubmitField('Update')
+    submit = SubmitField('Submit')
+
+
+class ApplyJob(FlaskForm):
+    company_name = StringField('Company Name', validators=[DataRequired()])
+    full_name = StringField('Full Name', validators=[DataRequired()])
+    current_address = TextAreaField('Current Address', validators=[DataRequired()])
+    city = StringField('city', validators=[DataRequired()])
+    district = StringField('District', validators=[DataRequired()])
+    state = StringField('State', validators=[DataRequired()])
+    pin_code = IntegerField('Pincode', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    phone_number = IntegerField('Phone Number', validators=[DataRequired()])
+    position = StringField('Position you are applying for', validators=[DataRequired()])
+    university = StringField('University', validators=[DataRequired()])
+    qualification = StringField('Highest Qualification', validators=[DataRequired()])
+    submit = SubmitField('Submit')

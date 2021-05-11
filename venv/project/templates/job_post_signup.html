@@ -16,6 +16,7 @@
       top: 50%;
       left: 50%;
       transform: translate(120%, 10%);
+      font-family: Arial, Helvetica, sans-serif;
     }
     .button1 {
       color: #3399ff;
@@ -43,6 +44,13 @@
         <a href="{{url_for('post_job_signin') }}">Sign in</a></h1><hr>
         <div class="button">
             <font class="button1">Sign up Advertiser</font><br><br>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <font color="green">{{ message }}</font>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
                 <p>
                     {{ form.company_name.label }}<br>
                     {{ form.company_name(size=50)}}<br>

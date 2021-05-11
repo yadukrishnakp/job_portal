@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .button {
+      background-color: white;
+    border: 3px solid grey;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50em;
+    font-size: 22px;
+    min-height: 10em;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    .button1 {
+      color: #3399ff;
+      text-align: left;
+      font-size: 45px;
+    }
+    .button2 {
+      color: #3399ff;
+      text-align: left;
+      font-size: 25px;
+    }
+</style>
+
+<form action="" method="post">
+    {% if user %}
+
+    {% for u in user %}
+        <div class="button">
+            <div class="button1">&emsp;{{u.full_name}}</div>
+            &emsp;Position to be applied :&emsp;{{u.position}}<br>
+            &emsp;Higher qualification :&emsp;{{u.qualification}}<br>
+            &emsp;University :&emsp;{{u.university}}<br>
+            &emsp;Address :&emsp;{{u.current_address}}<br>
+            &emsp;State :&emsp;{{u.state}}<br>
+            &emsp;District :&emsp;{{u.district}}<br>
+            &emsp;Pin code :&emsp;{{u.pin_code}}<br>
+            <div class="button2">Phone number :&emsp;{{u.phone_number}}</div>
+            <div class="button2">Email :&emsp;{{u.email}}</div><br>
+        </div><br>
+    {% endfor %}
+
+            {% endif %}
+
+
+</form><br>
+
+{% endblock %}
