@@ -31,6 +31,8 @@ class PostJobVacancy(FlaskForm):
     company_name = StringField('Company name', validators=[DataRequired()])
     job_title = StringField('Job title', validators=[DataRequired()])
     job_description = TextAreaField('Job description', validators=[DataRequired()])
+    key_qualification = TextAreaField('Key qualification', validators=[DataRequired()])
+    education= StringField('Education', validators=[DataRequired()])
     experience = StringField('Job experience', validators=[DataRequired()])
     salary_range = IntegerField('Salary range', validators=[DataRequired()])
     benefits = TextAreaField('Benefits', validators=[DataRequired()])
@@ -39,7 +41,7 @@ class PostJobVacancy(FlaskForm):
 
 
 class SearchJob(FlaskForm):
-    search = StringField('search',  validators=[DataRequired()],)
+    search = StringField('search',  validators=[DataRequired()], render_kw={"placeholder": "title, skill, company, experience, qualification, state"})
     submit = SubmitField('Search')
 
 

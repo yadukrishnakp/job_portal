@@ -43,8 +43,22 @@
                 </p>
                 <p>
                     {{ form.job_description.label }}<br>
-                    {{ form.job_description(cols="80", rows="15")}}<br>
+                    {{ form.job_description(cols="78", rows="14")}}<br>
                     {% for error in form.job_description.errors %}
+                    <small><span style="color:red;">{{error}}</span></small>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.key_qualification.label }}<br>
+                    {{ form.key_qualification(cols="78", rows="14")}}<br>
+                    {% for error in form.key_qualification.errors %}
+                    <small><span style="color:red;">{{error}}</span></small>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.education.label }}<br>
+                    {{ form.education(size=50)}}<br>
+                    {% for error in form.education.errors %}
                     <small><span style="color:red;">{{error}}</span></small>
                     {% endfor %}
                 </p>
@@ -64,7 +78,7 @@
                 </p>
                 <p>
                     {{ form.benefits.label }}<br>
-                    {{ form.benefits(cols="80", rows="15")}}<br>
+                    {{ form.benefits(cols="78", rows="14")}}<br>
                     {% for error in form.benefits.errors %}
                     <small><span style="color:red;">{{error}}</span></small>
                     {% endfor %}

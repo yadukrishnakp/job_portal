@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .button {
+    position: static;
+    }
+    .button1 {
+      color: #3399ff;
+      text-align: left;
+      font-size: 40px;
+
+    }
+    .button2{
+    background-color: white;
+    border: 3px solid grey;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50em;
+    font-size: 22px;
+    min-height: 30em;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="post" novalidate>
+        <h1><font color="blue" > JOB PORTAL</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <a href="{{url_for('update_profile') }}">Profile </a>&nbsp;
+            <a href="{{url_for('applied_job_seeker') }}">applied jobs </a>&nbsp;
+            <a href="{{url_for('job_seeker') }}">search </a>&nbsp;
+            <a href="{{url_for('logout') }}">Log out</a></h1><hr>
+    {% if result %}
+        {% for r in result %}<br><br>
+            <div class="button2">
+                <div class="button1">{{r.company_name}}</div>
+                <h4 class="">Job title :&emsp;{{ r.job_title }}</h4>
+                <h4>Job description :&emsp;{{ r.job_description }}</h4>
+                <h4>Key qualification :&emsp;{{ r.key_qualification }}</h4>
+                <h4>Education :&emsp;{{ r.education }}</h4>
+                <h4>Job experience :&emsp;{{ r.experience }}</h4>
+                <h4>Salary :&emsp;{{ r.salary_range }}</h4><br>
+                <h4>Job benefits :&emsp;{{ r.benefits }}</h4><br>
+                <h4>Link for apply :&emsp;{{ r.apply_link }}&emsp;<a href="{{url_for('apply_jobs')}}">apply</a></h4>
+            </div>
+        {% endfor %}
+    {% endif %}
+</form>
+</body>
+</html>

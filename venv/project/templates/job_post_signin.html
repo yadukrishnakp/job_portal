@@ -4,7 +4,7 @@
     <style>
     .button {
       background-color: white;
-      border: 3px solid grey;
+      border: 3px solid #FF8C00;
       color: #363534;
       padding: 80px 32px;
       text-decoration: none;
@@ -43,7 +43,7 @@
 
     {{ form.hidden_tag() }}
     <div class="button">
-        <font class="button1">Sign in Advertiser</font><br><br>
+        <font class="button1">Sign in </font><br><br>
          {% with messages = get_flashed_messages() %}
          {% if messages %}
          {% for message in messages %}

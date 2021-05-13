@@ -23,6 +23,8 @@ class Job_details(db.Model):
     company_name = db.Column(db.String(30), nullable=False)
     job_title = db.Column(db.String(20), nullable=False)
     job_description = db.Column(db.String(200), nullable=False)
+    key_qualification = db.Column(db.String(200), nullable=False)
+    education = db.Column(db.String(35), nullable=False)
     experience = db.Column(db.String(20), nullable=False)
     salary_range = db.Column(db.String(20), nullable=False)
     benefits = db.Column(db.String(150), nullable=False)
@@ -126,7 +128,8 @@ def login_advertiser():
     form = PostJobVacancy()
     if form.validate_on_submit():
         user = Job_details(company_name=form.company_name.data, job_title=form.job_title.data,
-                           job_description=form.job_description.data,
+                           job_description=form.job_description.data, key_qualification=form.key_qualification.data,
+                           education=form.education.data,
                            experience=form.experience.data, salary_range=form.salary_range.data,
                            benefits=form.benefits.data, apply_link=form.apply_link.data)
         db.session.add(user)
@@ -170,7 +173,6 @@ def login():
 @app.route('/job_seeker', methods=['GET', 'POST'])
 @login_required
 def job_seeker():
-    print(current_user.seeker_email)
     user1 = Job_details.query.all()
     form = SearchJob()
     if form.validate_on_submit():
@@ -254,9 +256,39 @@ def applied_job_seeker():
 @app.route('/show_applicants', methods=['GET', 'POST'])
 @login_required
 def show_applicants():
-    print(current_user.advertiser_company_name)
     user = Applied_jobs.query.filter_by(company_name=current_user.advertiser_company_name)
     return render_template('show_applied_jobs.html', user=user)
+
+
+@app.route('/search', methods=['GET', 'POST'])
+@login_required
+def search():
+    result_list = []
+    form = SearchJob()
+    search_result = form.search.data
+    user = Job_details.query.all()
+    if form.validate_on_submit():
+        if search_result:
+            for u in user:
+                if search_result in u.experience:
+                    result_list = Job_details.query.filter_by(experience=search_result)
+                    return render_template('show_search_result.html', result=result_list)
+                elif search_result in u.company_name:
+                    result_list = Job_details.query.filter_by(company_name=u.company_name)
+                    return render_template('show_search_result.html', result=result_list)
+                elif search_result in u.job_title:
+                    result_list = Job_details.query.filter_by(job_title=u.job_title)
+                    return render_template('show_search_result.html', result=result_list)
+                elif search_result in u.education:
+                    results = Job_details.query.filter_by(education=u.education)
+                    for result in results:
+                        result_list.append(result)
+                elif search_result in u.key_qualification:
+                    results = Job_details.query.filter_by(key_qualification=u.key_qualification)
+                    for result in results:
+                        result_list.append(result)
+            return render_template('show_search_result.html', result=result_list)
+    return redirect(url_for('job_seeker'))
 
 
 @app.route('/logout', methods=['GET', 'POST'])

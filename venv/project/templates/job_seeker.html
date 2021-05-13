@@ -26,28 +26,37 @@
     <title>Title</title>
 </head>
 <body>
-<form action="" method="post" novalidate>
+<form action="/search" method="post" novalidate>
     {{ form.hidden_tag() }}
     <h1><font color="blue" > JOB PORTAL</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
     <font color="blue"> {{ form.search.label }}</font>
-    {{form.search(placeholder="title,company or skill")}}
-    {{ form.submit() }}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    {{form.search (size=50)}}
+    {{ form.submit() }}&emsp;
     <a href="{{url_for('update_profile') }}">Profile </a>&nbsp;
     <a href="{{url_for('applied_job_seeker') }}">applied jobs </a>&nbsp;
     <a href="{{url_for('logout') }}">Log out</a></h1><hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <font color="red">{{message}}</font>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     {% if user %}
-    {% for u in user %}<br><br>
-    <div class="button2">
-        <div class="button1">{{u.company_name}}</div>
-        <h4 class="">Job title :&emsp;{{ u.job_title }}</h4>
-        <h4>Job description :&emsp;{{ u.job_description }}</h4>
-        <h4>Job experience :&emsp;{{ u.experience }}</h4>
-        <h4>Salary :&emsp;{{ u.salary_range }}</h4><br>
-        <h4>Job benefits :&emsp;{{ u.benefits }}</h4><br>
-        <h4>Link for apply :&emsp;{{ u.apply_link }}&emsp;<a href="{{url_for('apply_jobs')}}">apply</a></h4>
+        {% for u in user %}<br><br>
+            <div class="button2">
+                <div class="button1">{{u.company_name}}</div>
+                <h4 class="">Job title :&emsp;{{ u.job_title }}</h4>
+                <h4>Job description :&emsp;{{ u.job_description }}</h4>
+                <h4>Key qualification :&emsp;{{ u.key_qualification }}</h4>
+                <h4>Education :&emsp;{{ u.education }}</h4>
+                <h4>Job experience :&emsp;{{ u.experience }}</h4>
+                <h4>Salary :&emsp;{{ u.salary_range }}</h4><br>
+                <h4>Job benefits :&emsp;{{ u.benefits }}</h4><br>
+                <h4>Link for apply :&emsp;{{ u.apply_link }}&emsp;<a href="{{url_for('apply_jobs')}}">apply</a></h4>
 
-    </div>
-    {% endfor %}
+            </div>
+        {% endfor %}
     {% endif %}
 </form>
 </body>
