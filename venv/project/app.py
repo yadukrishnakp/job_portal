@@ -87,7 +87,18 @@ def home():
 # home page find job button
 @app.route('/find_job', methods=['GET', 'POST'])
 def find_job():
-    return redirect(url_for('login'))
+    rows = Job_details.query.all()
+    f=0
+    for r in rows:
+        f+=1
+    # row1 = Job_details.query.filter_by(id=f).first()
+    # row2 = Job_details.query.filter_by(id=f - 1).first()
+    # row3 = Job_details.query.filter_by(id=f - 2).first()
+    list_row=[]
+    for r in range(f, f-3, -1):
+        row = Job_details.query.filter_by(id=r).first()
+        list_row.append(row)
+    return render_template('jobs_before_login.html', list_row=list_row)
 
 
 # register of job advertiser

@@ -15,6 +15,42 @@
       cursor: pointer;
       border-radius: 28px;
     }
+    .button1 {
+      background-color: grey;
+      border: 3px solid white;
+      color: #363534;
+      padding: 15px 42px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 25px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 28px;
+      transform: translate(250%, 80%);
+    }
+    .button3 {
+      background-color: grey;
+      border: 3px solid white;
+      color: #363534;
+      padding: 15px 42px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 25px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 28px;
+      transform: translate(360%, 80%);
+    }
+    .button2{
+      color: #363534;
+      text-align: center;
+      display: inline-block;
+      font-size: 50px
+      cursor: pointer;
+      transform: translate(350%, 40%);
+    }
 </style>
     <meta charset="UTF-8">
     {% if title %}
@@ -42,7 +78,7 @@
         <br><br><br><br><br><br><br><br><br><br>
         <form action="/find_job" method="post">
             &emsp;&emsp;&emsp;&emsp;<font color="grey" size="15"> <i>Find open jobs</i></font>
-            &emsp;&emsp;&emsp;&emsp;<b><input class="button" type="submit"  value="Find job"></b>
+            &emsp;&emsp;&emsp;&emsp;<b><input class="button" type="submit"  value="search jobs"></b>
         </form>
         <br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -53,6 +89,5 @@
             &emsp;&emsp;
             <b><input class="button" type="submit" value="Post a job"></b>
         </form>
-
 </body>
 </html>

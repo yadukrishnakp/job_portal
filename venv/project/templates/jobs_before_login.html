@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .button1 {
+      color: #3399ff;
+      text-align: left;
+      font-size: 40px;
+
+    }
+    .button2{
+    background-color: white;
+    border: 3px solid grey;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50em;
+    font-size: 22px;
+    min-height: 30em;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>{{title}}</title>
+    {% else %}
+        <title>Job Portal</title>
+    {% endif %}
+</head>
+<body>
+<form action="/jobs_before_login" method="post" novalidate>
+    <h1><font color="blue" > JOB PORTAL</font>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;
+            &emsp;&emsp;
+        <a href="{{url_for('home') }}">Home</a>&nbsp;
+        <a href="{{url_for('register') }}">Sign up</a>&nbsp;
+        <a href="{{url_for('login') }}">Login</a></h1><hr>
+        {% if list_row %}
+            {% for list in list_row %}<br><br>
+                <div class="button2">
+                    <div class="button1">{{list.company_name}}</div>
+                    <h4 class="">Job title :&emsp;{{ list.job_title }}</h4>
+                    <h4>Job description :&emsp;{{ list.job_description }}</h4>
+                    <h4>Key qualification :&emsp;{{ list.key_qualification }}</h4>
+                    <h4>Education :&emsp;{{ list.education }}</h4>
+                    <h4>Job experience :&emsp;{{ list.experience }}</h4>
+                    <h4>Salary :&emsp;{{ list.salary_range }}</h4><br>
+                    <h4>Job benefits :&emsp;{{ list.benefits }}</h4><br>
+                    <h4>Link for apply :&emsp;{{ list.apply_link }}&emsp;<a href="{{url_for('apply_jobs')}}">apply</a></h4>
+
+                </div>
+            {% endfor %}
+        {% endif %}
+        <p>
+            <center><h2><font color="blue">For more jobs </font>  <a href="{{url_for('register')}}">Sign up</a></h2></center>
+        </p>
+</form>
+</body>
+</html>
