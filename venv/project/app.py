@@ -15,9 +15,10 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 
-# t a b l e    c r e a t i o n    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# t a b l e    c r e a t i o n    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
+# this table for storing job details
 class Job_details(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(30), nullable=False)
@@ -31,6 +32,7 @@ class Job_details(db.Model):
     apply_link = db.Column(db.String(40), nullable=False)
 
 
+# this table for storing users
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     advertiser_company_name = db.Column(db.String(20))
@@ -46,6 +48,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+# this table for storing user details like education
 class Update_Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(30), nullable=False)
@@ -61,6 +64,7 @@ class Update_Profile(db.Model):
     qualification = db.Column(db.String(30), nullable=False)
 
 
+# this table for storing how many jobs applied by a user
 class Applied_jobs(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String(30), nullable=False)
@@ -88,14 +92,11 @@ def home():
 @app.route('/find_job', methods=['GET', 'POST'])
 def find_job():
     rows = Job_details.query.all()
-    f=0
+    f = 0
     for r in rows:
-        f+=1
-    # row1 = Job_details.query.filter_by(id=f).first()
-    # row2 = Job_details.query.filter_by(id=f - 1).first()
-    # row3 = Job_details.query.filter_by(id=f - 2).first()
-    list_row=[]
-    for r in range(f, f-3, -1):
+        f += 1
+    list_row = []
+    for r in range(f, f - 3, -1):
         row = Job_details.query.filter_by(id=r).first()
         list_row.append(row)
     return render_template('jobs_before_login.html', list_row=list_row)
@@ -191,6 +192,7 @@ def job_seeker():
     return render_template('job_seeker.html', title='Job portal', form=form, user=user1)
 
 
+# storing about user details
 @app.route('/update_profile', methods=['GET', 'POST'])
 @login_required
 def update_profile():
@@ -220,6 +222,7 @@ def update_profile():
     return render_template('update_profile.html', title='Job portal', form=form)
 
 
+# this for apply jobs
 @app.route('/apply_jobs', methods=['GET', 'POST'])
 @login_required
 def apply_jobs():
@@ -240,12 +243,18 @@ def apply_jobs():
     if form.validate_on_submit():
         check_user = Job_details.query.filter_by(company_name=form.company_name.data).first()
         if check_user:
-            user = Applied_jobs(company_name=form.company_name.data, full_name=form.full_name.data,
+            user = Applied_jobs(company_name=form.company_name.data,
+                                full_name=form.full_name.data,
                                 current_address=form.current_address.data,
-                                city=form.city.data, district=form.district.data, state=form.state.data,
+                                city=form.city.data,
+                                district=form.district.data,
+                                state=form.state.data,
                                 pin_code=form.pin_code.data,
-                                email=form.email.data, phone_number=form.phone_number.data, position=form.position.data,
-                                university=form.university.data, qualification=form.qualification.data)
+                                email=form.email.data,
+                                phone_number=form.phone_number.data,
+                                position=form.position.data,
+                                university=form.university.data,
+                                qualification=form.qualification.data)
             db.session.add(user)
             db.session.commit()
             flash('applied successfully')
@@ -256,6 +265,7 @@ def apply_jobs():
     return render_template('apply_jobs.html', title='Job portal', form=form)
 
 
+# shows job seeker to how many jobs applied and which company
 @app.route('/applied_job_seeker', methods=['GET', 'POST'])
 @login_required
 def applied_job_seeker():
@@ -264,6 +274,7 @@ def applied_job_seeker():
         return render_template('applied_jobs.html', user=user)
 
 
+# this for job advertiser for who are applied
 @app.route('/show_applicants', methods=['GET', 'POST'])
 @login_required
 def show_applicants():
@@ -271,6 +282,7 @@ def show_applicants():
     return render_template('show_applied_jobs.html', user=user)
 
 
+# this for search and shows search result
 @app.route('/search', methods=['GET', 'POST'])
 @login_required
 def search():
@@ -302,6 +314,7 @@ def search():
     return redirect(url_for('job_seeker'))
 
 
+# logout
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
