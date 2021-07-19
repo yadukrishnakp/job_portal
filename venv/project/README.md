@@ -10,8 +10,7 @@ this is an web application helps to
 
 
 # installation
-#####pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 
 # for run
-
-#####python3 app.py
+python3 app.py
