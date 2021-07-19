@@ -8,9 +8,10 @@ this is an web application helps to
 * job seekers can see applied jobs,companies can see who are applied for posted vacancy 
 
 
-
-# installation
+# For program files
+venv -> project
+# Installation
 pip3 install -r requirements.txt
 
-# for run
+# For run
 python3 app.py
